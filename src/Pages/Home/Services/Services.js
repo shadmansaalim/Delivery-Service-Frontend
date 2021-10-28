@@ -8,20 +8,31 @@ const Services = () => {
     useEffect(() => {
         fetch('http://localhost:5000/services')
             .then(res => res.json())
-            .then(data => setServices(data))
+            .then(data => {
+                setServices(data);
+            })
     }, [])
 
     return (
-        <Container className="mx-auto">
-            <Row xs={1} md={3} className="g-4 my-5">
-                {
-                    services.map(service => <Service
-                        key={service.sID}
-                        service={service}
-                    ></Service>)
-                }
-            </Row>
-        </Container>
+        <section>
+            {
+                services.length
+                    ?
+                    <section style={{ marginTop: '60px' }}>
+                        <h2>We provide services that you can rely on</h2>
+                        <Row xs={1} md={2} lg={3} className="g-4 mt-3 mb-5">
+                            {
+                                services.map(service => <Service
+                                    key={service.sID}
+                                    service={service}
+                                ></Service>)
+                            }
+                        </Row>
+                    </section>
+                    :
+                    null
+            }
+        </section>
     );
 };
 
