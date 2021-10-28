@@ -1,48 +1,17 @@
 import React from 'react';
-import { Carousel } from 'react-bootstrap';
-import img1 from '../../../images/carousel1.jpeg'
-import img2 from '../../../images/carousel2.jpeg'
-import img3 from '../../../images/carousel3.jpeg'
-
+import './Banner.css'
+import { Button } from 'react-bootstrap';
 const Banner = () => {
     return (
-        <Carousel fade>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src={img1}
-                    alt="First slide"
-                />
-                <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src={img2}
-                    alt="Second slide"
-                />
-
-                <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src={img3}
-                    alt="Third slide"
-                />
-
-                <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-        </Carousel>
+        <div className="banner p-5 text-white d-flex align-items-center justify-content-center text-center">
+            <div>
+                <h1 className="fw-bold">Fast, Easy and Transparent <br /> Express Delivery Service</h1>
+                <p className="mt-4 fw-lighter">All it takes is one booking</p>
+                <div className="mt-4 d-flex">
+                    <Button className="app-blue-btn mx-auto" variant="primary" size="lg">Book Now</Button>
+                </div>
+            </div>
+        </div>
     );
 };
 
