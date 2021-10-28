@@ -1,0 +1,17 @@
+.track{
+    margin-top: -100px;
+    position: absolute;
+    padding: 48px;
+}
+
+
+@media only screen and (max-width: 688px){
+    .track{
+        padding: 24px;
+    }
+    .track input{
+        width: 100% !important;
+    }
+}
+
+/* @media (min-width: 689px) and (max-width: 1024px){ */
