@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.app-blue-btn{
+  background-color: #0057A7 !important;
+  border-color: #0057A7 !important;
+}
