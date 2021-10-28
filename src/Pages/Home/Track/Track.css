@@ -1,13 +1,14 @@
 .track{
     margin-top: -100px;
-    position: absolute;
+    position: relative;
     padding: 48px;
 }
 
 
 @media only screen and (max-width: 688px){
     .track{
-        padding: 24px;
+        margin-top: -80px;
+        padding: 18px;
     }
     .track input{
         width: 100% !important;
