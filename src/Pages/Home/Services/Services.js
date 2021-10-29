@@ -2,6 +2,7 @@ import React from 'react';
 import { Row } from 'react-bootstrap';
 import useServices from '../../../hooks/useServices';
 import Service from '../Service/Service';
+import './Services.css'
 const Services = () => {
     const [services, setServices] = useServices();
     return (
@@ -21,7 +22,10 @@ const Services = () => {
                         </Row>
                     </section>
                     :
-                    null
+                    //Custom Spinner
+                    <section className="text-center" style={{ marginTop: '100px', marginBottom: '100px' }} >
+                        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                    </section>
             }
         </section>
     );
