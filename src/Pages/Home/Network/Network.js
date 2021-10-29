@@ -2,7 +2,7 @@ import React from 'react';
 
 const Network = () => {
     return (
-        <section style={{ marginTop: '100px' }}>
+        <section className="mb-5" style={{ marginTop: '100px' }}>
             <h3 className="text-center mt-4">Australia's largest delivery network</h3>
             <div className="row d-flex justify-content-center align-items-center mx-auto text-center mt-3">
                 <div className="col-md-3 mx-auto">

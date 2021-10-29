@@ -8,6 +8,7 @@ import {
 import Home from './Pages/Home/Home/Home';
 import Header from './Pages/Shared/Header/Header';
 import ServiceDetails from './Pages/ServiceDetails/ServiceDetails';
+import Footer from './Pages/Shared/Footer/Footer';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <ServiceDetails></ServiceDetails>
           </Route>
         </Switch>
+        <Footer></Footer>
       </Router>
     </div>
   );
