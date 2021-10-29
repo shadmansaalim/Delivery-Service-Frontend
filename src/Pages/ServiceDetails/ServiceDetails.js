@@ -1,16 +1,41 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 import useServices from '../../hooks/useServices';
 import './ServiceDetails.css'
+import { useForm } from 'react-hook-form';
 
 const ServiceDetails = () => {
     const { id } = useParams();
+    const { user } = useAuth();
+    const history = useHistory();
     const [services, setServices] = useServices();
     const [service, setService] = useState({});
     const [activeSection, setActiveSection] = useState(1);
     const [progress, setProgress] = useState(25);
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+    const onSubmit = data => {
+        console.log(data);
+        fetch('', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.insertedId) {
+                    history.push('/order-confirmed');
+                    reset();
+                }
+            })
+    };
+
 
     useEffect(() => {
         const url = `http://localhost:5000/services/${id}`;
@@ -50,7 +75,7 @@ const ServiceDetails = () => {
                                     <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
                                         <h2 id="heading">Provide Details For Delivery</h2>
                                         <p>Fill all form field to go to next step</p>
-                                        <form id="msform" className="shadow-lg p-5 rounded-3">
+                                        <form onSubmit={handleSubmit(onSubmit)} id="msform" className="shadow-lg p-5 rounded-3">
 
                                             <ul id="progressbar">
                                                 <li class={activeSection >= 1 && "active"} id="personal"><strong>Sender</strong></li>
@@ -73,20 +98,20 @@ const ServiceDetails = () => {
                                                         </div>
                                                     </div>
                                                     <div className="form-floating mb-3">
-                                                        <input type="text" className="form-control" id="floatingName" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingName">Name</label>
+                                                        <input type="text" defaultValue={user.displayName} {...register("senderName")} className="form-control " />
                                                     </div>
                                                     <div className="form-floating mb-3">
-                                                        <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingEmail">Email address</label>
+                                                        <input type="email" className="form-control " defaultValue={user.email}  {...register("senderEmail", { required: true })} />
                                                     </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input type="number" className="form-control" id="floatingPhone" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingPhone">Phone</label>
+                                                    <div className="mb-3">
+                                                        <input
+                                                            placeholder="Phone"
+                                                            type="number" className="form-control" defaultValue=""  {...register("senderPhone", { required: true })} />
                                                     </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input type="number" className="form-control" id="floatingSenderAddress" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingSenderAddress">Sender Address</label>
+                                                    <div className="mb-3">
+                                                        <input
+                                                            placeholder="Sender Adress"
+                                                            type="text" className="form-control" defaultValue=""  {...register("senderAddress", { required: true })} />
                                                     </div>
                                                 </div>
                                                 <input onClick={() => {
@@ -104,29 +129,35 @@ const ServiceDetails = () => {
                                                             <h2 class="steps">Step {activeSection} - 4</h2>
                                                         </div>
                                                     </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input type="number" className="form-control" id="floatingProductLength" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingProductLength">Length (cm)</label>
+                                                    <div className="mb-3">
+                                                        <input
+                                                            placeholder="Length(cm)"
+                                                            type="number" className="form-control" defaultValue=""  {...register("itemLength", { required: true })} />
                                                     </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input type="number" className="form-control" id="floatingProductWidth" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingProductWidth">Width (cm)</label>
+                                                    <div className="mb-3">
+                                                        <input
+                                                            placeholder="Width(cm)"
+                                                            type="number" className="form-control" defaultValue=""  {...register("itemWidth", { required: true })} />
                                                     </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input type="number" className="form-control" id="floatingProductHeight" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingProductHeight">Height (cm)</label>
+                                                    <div className="mb-3">
+                                                        <input
+                                                            placeholder="Height(cm)"
+                                                            type="number" className="form-control" defaultValue=""  {...register("itemHeight", { required: true })} />
                                                     </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input type="number" className="form-control" id="floatingProductWeight" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingProductWeight">Weight (kg)</label>
+                                                    <div className="mb-3">
+                                                        <input
+                                                            placeholder="Weight(kg)"
+                                                            type="number" className="form-control" defaultValue=""  {...register("itemWeight", { required: true })} />
                                                     </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input type="number" className="form-control" id="floatingProductValue" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingProductValue">$ Value (AUD)</label>
+                                                    <div className="mb-3">
+                                                        <input
+                                                            placeholder="$ Value(AUD)"
+                                                            type="number" className="form-control" defaultValue=""  {...register("itemValue", { required: true })} />
                                                     </div>
-                                                    <div class="form-floating">
-                                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '100px' }}></textarea>
-                                                        <label for="floatingTextarea2">Item Description</label>
+                                                    <div className="mb-3">
+                                                        <textarea
+                                                            placeholder="Item Description"
+                                                            type="number" className="form-control" defaultValue=""  {...register("itemDescription", { required: true })} />
                                                     </div>
                                                 </div>
                                                 <input onClick={() => {
@@ -145,27 +176,30 @@ const ServiceDetails = () => {
                                                             <h2 class="steps">Step {activeSection} - 4</h2>
                                                         </div>
                                                     </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input type="text" className="form-control" id="floatingName" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingName">Name</label>
+                                                    <div className="mb-3">
+
+                                                        <input placeholder="Receiver Name"
+                                                            type="text"
+                                                            defaultValue="" {...register("receiverName")} className="form-control " />
                                                     </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingEmail">Email address</label>
+                                                    <div className="mb-3">
+                                                        <input placeholder="Email" type="email" className="form-control " defaultValue=""  {...register("receiverEmail", { required: true })} />
                                                     </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input type="number" className="form-control" id="floatingPhone" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingPhone">Phone</label>
+                                                    <div className="mb-3">
+                                                        <input
+                                                            placeholder="Phone"
+                                                            type="number" className="form-control" defaultValue=""  {...register("receiverPhone", { required: true })} />
                                                     </div>
-                                                    <div className="form-floating mb-3">
-                                                        <input type="number" className="form-control" id="floatingSenderAddress" placeholder="name@example.com" />
-                                                        <label htmlFor="floatingSenderAddress">Receiver Address</label>
+                                                    <div className="mb-3">
+                                                        <input
+                                                            placeholder="Address"
+                                                            type="text" className="form-control" defaultValue=""  {...register("receiverAddress", { required: true })} />
                                                     </div>
                                                 </div>
                                                 <input onClick={() => {
                                                     setActiveSection(activeSection + 1)
                                                     setProgress(100)
-                                                }} type="button" name="next" class="next action-button" value="Submit" />
+                                                }} type="submit" name="next" class="next action-button" value="Submit" />
                                                 <input onClick={() => setActiveSection(activeSection - 1)} type="button" name="previous" class="previous action-button-previous" value="Previous" />
                                             </fieldset>
                                             <fieldset class={activeSection !== 4 ? "d-none" : "d-block"}>
