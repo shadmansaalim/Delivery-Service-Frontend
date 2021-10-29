@@ -9,6 +9,8 @@ import Home from './Pages/Home/Home/Home';
 import Header from './Pages/Shared/Header/Header';
 import ServiceDetails from './Pages/ServiceDetails/ServiceDetails';
 import Footer from './Pages/Shared/Footer/Footer';
+import Login from './Pages/Login/Login'
+import SignUp from './Pages/SignUp/SignUp';
 
 function App() {
   return (
@@ -24,6 +26,12 @@ function App() {
           </Route>
           <Route exact path="/service/:id">
             <ServiceDetails></ServiceDetails>
+          </Route>
+          <Route exact path="/login">
+            <Login></Login>
+          </Route>
+          <Route exact path="/sign-up">
+            <SignUp></SignUp>
           </Route>
         </Switch>
         <Footer></Footer>

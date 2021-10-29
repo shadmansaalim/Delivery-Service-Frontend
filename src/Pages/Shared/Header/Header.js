@@ -24,7 +24,7 @@ const Header = () => {
                         <NavLink className="text-white nav-link " to="/contact">Contact</NavLink>
                     </Nav>
                     <Nav className="ms-auto">
-                        <Button onClick={() => history.push('/register-login')} variant="outline-warning rounded-pill me-lg-3">Register / Login</Button>
+                        <Button onClick={() => history.push('/login')} variant="outline-warning rounded-pill me-lg-3">Register / Login</Button>
                         <NavLink to="/admin">
                             <Button className="app-blue-btn" variant="primary">Admin</Button>
                         </NavLink>
