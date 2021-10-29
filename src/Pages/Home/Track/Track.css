@@ -5,7 +5,7 @@
 }
 
 
-@media only screen and (max-width: 688px){
+@media only screen and (max-width: 767px){
     .track{
         margin-top: -80px;
         padding: 18px;
