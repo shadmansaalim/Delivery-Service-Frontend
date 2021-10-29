@@ -1,18 +1,9 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { Row, Container } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
+import useServices from '../../../hooks/useServices';
 import Service from '../Service/Service';
 const Services = () => {
-    const [services, setServices] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/services')
-            .then(res => res.json())
-            .then(data => {
-                setServices(data);
-            })
-    }, [])
-
+    const [services, setServices] = useServices([]);
     return (
         <section>
             {
