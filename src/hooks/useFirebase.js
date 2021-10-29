@@ -1,6 +1,6 @@
 import initializeAuthentication from "../Firebase/firebase.init"
 
-import { getAuth, GoogleAuthProvider, FacebookAuthProvider, TwitterAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider, TwitterAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -42,6 +42,14 @@ const useFirebase = () => {
         return signInWithPopup(auth, twitterProvider);
     }
 
+    const logOutUser = () => {
+        signOut(auth)
+            .then(() => {
+                setUser(null);
+            })
+            .finally(() => setIsLoading(false));
+    }
+
     return {
         user,
         setUser,
@@ -49,7 +57,8 @@ const useFirebase = () => {
         setIsLoading,
         handleGoogleSignUp,
         handleFacebookSignUp,
-        handleTwitterSignUp
+        handleTwitterSignUp,
+        logOutUser
     }
 }
 

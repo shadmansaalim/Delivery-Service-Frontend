@@ -1,11 +1,20 @@
 import React from 'react';
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { Navbar, Container, Nav, Button, Offcanvas } from 'react-bootstrap';
 import { NavLink, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import profile from '../../../images/profileImage.934e5b10.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+
 const Header = () => {
     const history = useHistory();
-    const { user } = useAuth();
+    const { user, logOutUser } = useAuth();
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return (
         <Navbar bg="dark" expand="lg">
             <Container>
@@ -33,9 +42,9 @@ const Header = () => {
                                 {
                                     user.photoURL
                                         ?
-                                        <img className="rounded-circle" src={user.photoURL} alt="" width="40" height="40" />
+                                        <img className="mx-auto img-fluid rounded-circle" src={user.photoURL} alt={user.displayName} style={{ width: 40, height: 40 }} data-bs-toggle="tooltip" data-bs-placement="bottom" title={user.displayName} onClick={handleShow} ></img>
                                         :
-                                        <img src={profile} alt="" width="40" height="40" />
+                                        <img className="mx-auto img-fluid rounded-circle" src={profile} alt={user.displayName} style={{ width: 40, height: 40 }} data-bs-toggle="tooltip" data-bs-placement="bottom" title={user.displayName} onClick={handleShow} ></img>
                                 }
                             </Nav>
                             :
@@ -46,6 +55,27 @@ const Header = () => {
                                 </NavLink>
                             </Nav>
                     }
+                    <Offcanvas show={show} onHide={handleClose} placement="end">
+                        <Offcanvas.Header closeButton>
+                            <Offcanvas.Title></Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body>
+                            <div className="text-center">
+                                {
+                                    user?.photoURL ?
+                                        <img className="img-fluid rounded-circle" src={user.photoURL} alt={user?.displayName}></img>
+                                        :
+                                        <img className="img-fluid rounded-circle" src={profile} alt={user?.displayName}></img>
+                                }
+                                <p className="mt-2">{user?.displayName}</p>
+                                <button onClick={() => {
+                                    logOutUser();
+                                    handleClose();
+                                }} className="btn btn-warning">Log Out</button>
+                            </div>
+
+                        </Offcanvas.Body>
+                    </Offcanvas>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
