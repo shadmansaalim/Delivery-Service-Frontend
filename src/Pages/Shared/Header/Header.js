@@ -1,8 +1,11 @@
 import React from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import { NavLink, useHistory } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
+import profile from '../../../images/profileImage.934e5b10.png'
 const Header = () => {
     const history = useHistory();
+    const { user } = useAuth();
     return (
         <Navbar bg="dark" expand="lg">
             <Container>
@@ -23,12 +26,26 @@ const Header = () => {
                         <NavLink className="text-white nav-link " to="/about">About</NavLink>
                         <NavLink className="text-white nav-link " to="/contact">Contact</NavLink>
                     </Nav>
-                    <Nav className="ms-auto">
-                        <Button onClick={() => history.push('/login')} variant="outline-warning rounded-pill me-lg-3">Register / Login</Button>
-                        <NavLink to="/admin">
-                            <Button className="app-blue-btn" variant="primary">Admin</Button>
-                        </NavLink>
-                    </Nav>
+                    {
+                        user?.email
+                            ?
+                            <Nav className="ms-auto">
+                                {
+                                    user.photoURL
+                                        ?
+                                        <img className="rounded-circle" src={user.photoURL} alt="" width="40" height="40" />
+                                        :
+                                        <img src={profile} alt="" width="40" height="40" />
+                                }
+                            </Nav>
+                            :
+                            <Nav className="ms-auto">
+                                <Button onClick={() => history.push('/login')} variant="outline-warning rounded-pill me-lg-3">Register / Login</Button>
+                                <NavLink to="/admin">
+                                    <Button className="app-blue-btn" variant="primary">Admin</Button>
+                                </NavLink>
+                            </Nav>
+                    }
                 </Navbar.Collapse>
             </Container>
         </Navbar>

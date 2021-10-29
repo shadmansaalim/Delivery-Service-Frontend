@@ -2,7 +2,51 @@ import React from 'react';
 import './Login.css'
 import googleIcon from '../../images/googleIcon.png';
 import { Link } from 'react-router-dom';
-const RegisterLogin = () => {
+import useAuth from '../../hooks/useAuth';
+const Login = () => {
+
+    const { handleGoogleSignUp, handleFacebookSignUp, handleTwitterSignUp, setIsLoading } = useAuth();
+
+
+    const signUpUsingGoogle = () => {
+        setIsLoading(true);
+        handleGoogleSignUp()
+            .then(result => {
+            })
+            .catch(error => {
+
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }
+    const signUpUsingFacebook = () => {
+        setIsLoading(true);
+        handleFacebookSignUp()
+            .then(result => {
+
+            })
+            .catch(error => {
+
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }
+    const signUpUsingTwitter = () => {
+        setIsLoading(true);
+        handleTwitterSignUp()
+            .then(result => {
+
+            })
+            .catch(error => {
+
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }
+
     return (
 
         <section class="h-100 gradient-form pb-5" style={{ backgroundColor: '#eee' }}>
@@ -43,20 +87,20 @@ const RegisterLogin = () => {
                                             <div className="divider d-flex align-items-center my-3">
                                                 <p className="text-center fw-bold mx-2 mb-0" style={{ color: 'rgb(69, 82, 110)' }}>OR</p>
                                             </div>
-                                            <div className="mb-4 mt-2">
-                                                <button class="btn btn-light w-100 btn-block  btn-outline" ><img width="16px" className="img-fluid mb-1 me-2" src={googleIcon} alt="Google" />Login With Google</button>
-                                                <button className="mt-2 btn btn-block btn-twitter w-100 text-white"> <i className="fab fa-twitter"></i>   Login With Twitter</button>
-                                                <button className="btn btn-block btn-facebook w-100 mt-2 text-white"> <i className="fab fa-facebook-f"></i>   Login With Facebook</button>
-                                            </div>
-
-                                            <div class="d-flex align-items-center justify-content-center pb-4">
-                                                <p class="mb-0 me-2">Don't have an account?</p>
-                                                <Link to="/sign-up">
-                                                    <button type="button" class="btn btn-outline-warning">Create new</button>
-                                                </Link>
-                                            </div>
-
                                         </form>
+
+                                        <div className="mb-4 mt-2">
+                                            <button onClick={signUpUsingGoogle} class="btn btn-light w-100 btn-block  btn-outline" ><img width="16px" className="img-fluid mb-1 me-2" src={googleIcon} alt="Google" />Continue With Google</button>
+                                            <button onClick={signUpUsingTwitter} className="mt-2 btn btn-block btn-twitter w-100 text-white"> <i className="fab fa-twitter"></i>   Continue With Twitter</button>
+                                            <button onClick={signUpUsingFacebook} className="btn btn-block btn-facebook w-100 mt-2 text-white"> <i className="fab fa-facebook-f"></i>   Continue With Facebook</button>
+                                        </div>
+
+                                        <div class="d-flex align-items-center justify-content-center pb-4">
+                                            <p class="mb-0 me-2">Don't have an account?</p>
+                                            <Link to="/sign-up">
+                                                <button type="button" class="btn btn-outline-warning">Create new</button>
+                                            </Link>
+                                        </div>
 
                                     </div>
                                 </div>
@@ -76,4 +120,4 @@ const RegisterLogin = () => {
     );
 };
 
-export default RegisterLogin;
+export default Login;

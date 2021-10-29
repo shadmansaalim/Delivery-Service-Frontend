@@ -13,8 +13,7 @@ const SignUp = () => {
                                 <div class="col-lg-6 d-flex align-items-center gradient-custom-2" style={{ backgroundColor: '#0057A7' }}>
                                     <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                                         <h4 class="mb-4">PACK & SEND - Australia's Number One Parcel Courier & Freight Reseller</h4>
-                                        <p class="small mb-0">PACK & SEND is Australia's leading and most recognised parcel courier and freight delivery reseller. We consolidate the services of the world's top parcel and freight carriers into a single access point under our brand - allowing our customers to save time, trouble and money on all their logistics needs.
-                                            We have been providing pack and send services to businesses and consumers since 1993, including providing a whole range of value-add services such as packaging solutions.</p>
+                                        <p class="small mb-0">We give customers access to multiple freight, courier, shipping, postal and removalist services, with no limits on the size, value or weight of items we pack and send. No matter what our customers' needs are in terms of budget, delivery time and reliability, we can provide a solution. We have the resources and expertise to deliver to (and pick up from) virtually any destination on the planet.</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">

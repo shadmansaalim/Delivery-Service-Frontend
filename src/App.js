@@ -11,31 +11,35 @@ import ServiceDetails from './Pages/ServiceDetails/ServiceDetails';
 import Footer from './Pages/Shared/Footer/Footer';
 import Login from './Pages/Login/Login'
 import SignUp from './Pages/SignUp/SignUp';
+import AuthProvider from './context/AuthProvider';
+import PrivateForm from './Pages/PrivateRoute/PrivateForm';
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Header></Header>
-        <Switch>
-          <Route exact path="/">
-            <Home></Home>
-          </Route>
-          <Route exact path="/home">
-            <Home></Home>
-          </Route>
-          <Route exact path="/service/:id">
-            <ServiceDetails></ServiceDetails>
-          </Route>
-          <Route exact path="/login">
-            <Login></Login>
-          </Route>
-          <Route exact path="/sign-up">
-            <SignUp></SignUp>
-          </Route>
-        </Switch>
-        <Footer></Footer>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Header></Header>
+          <Switch>
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route exact path="/home">
+              <Home></Home>
+            </Route>
+            <Route exact path="/service/:id">
+              <ServiceDetails></ServiceDetails>
+            </Route>
+            <PrivateForm exact path="/login">
+              <Login></Login>
+            </PrivateForm>
+            <PrivateForm exact path="/sign-up">
+              <SignUp></SignUp>
+            </PrivateForm>
+          </Switch>
+          <Footer></Footer>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
