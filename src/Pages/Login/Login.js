@@ -1,17 +1,20 @@
 import React from 'react';
 import './Login.css'
 import googleIcon from '../../images/googleIcon.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 const Login = () => {
 
     const { handleGoogleSignUp, handleFacebookSignUp, handleTwitterSignUp, setIsLoading } = useAuth();
-
+    const history = useHistory();
+    const location = useLocation();
+    const redirectURL = location.state?.from || '/home';
 
     const signUpUsingGoogle = () => {
         setIsLoading(true);
         handleGoogleSignUp()
             .then(result => {
+                history.push(redirectURL);
             })
             .catch(error => {
 
