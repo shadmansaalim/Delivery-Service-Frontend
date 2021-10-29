@@ -3,7 +3,7 @@ import { Row } from 'react-bootstrap';
 import useServices from '../../../hooks/useServices';
 import Service from '../Service/Service';
 const Services = () => {
-    const [services, setServices] = useServices([]);
+    const [services, setServices] = useServices();
     return (
         <section>
             {
