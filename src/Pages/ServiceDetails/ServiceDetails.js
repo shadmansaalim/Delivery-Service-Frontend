@@ -32,9 +32,14 @@ const ServiceDetails = () => {
                 service.name
                     ?
                     <section className="text-center">
-                        <img src={service.banner} alt="" style={{ width: '100%', height: '500px' }} />
-                        <h3 className="my-3">{service.name}</h3>
-                        <p className="col-6 mx-auto">{service.description}</p>
+                        <div className="details-banner d-flex justify-content-center align-items-center" style={{ backgroundImage: `url(${service.banner})` }}>
+                            <div className="text-white shadow-lg p-4 col-6 mx-auto rounded-3 bg-warning" >
+                                <h3 className="mb-3">{service.name}</h3>
+                                <p className="mx-auto">{service.description}</p>
+                            </div>
+                        </div>
+                        {/* <img src={service.banner} alt="" style={{ width: '100%', height: '500px' }} /> */}
+
 
 
 
@@ -45,12 +50,12 @@ const ServiceDetails = () => {
                                     <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
                                         <h2 id="heading">Provide Details For Delivery</h2>
                                         <p>Fill all form field to go to next step</p>
-                                        <form id="msform">
+                                        <form id="msform" className="shadow-lg p-5 rounded-3">
 
                                             <ul id="progressbar">
-                                                <li class={activeSection >= 1 && "active"} id="account"><strong>Account</strong></li>
-                                                <li class={activeSection >= 2 && "active"} id="personal"><strong>Personal</strong></li>
-                                                <li class={activeSection >= 3 && "active"} id="payment"><strong>Image</strong></li>
+                                                <li class={activeSection >= 1 && "active"} id="personal"><strong>Sender</strong></li>
+                                                <li class={activeSection >= 2 && "active"} id="order"><strong>Order</strong></li>
+                                                <li class={activeSection >= 3 && "active"} id="personal"><strong>Receiver</strong></li>
                                                 <li class={activeSection >= 4 && "active"} id="confirm"><strong>Finish</strong></li>
                                             </ul>
                                             <div class="progress">
@@ -93,12 +98,36 @@ const ServiceDetails = () => {
                                                 <div class="form-card">
                                                     <div class="row">
                                                         <div class="col-7">
-                                                            <h2 class="fs-title">Personal Information:</h2>
+                                                            <h2 class="fs-title">Order Information</h2>
                                                         </div>
                                                         <div class="col-5">
-                                                            <h2 class="steps">Step 2 - 4</h2>
+                                                            <h2 class="steps">Step {activeSection} - 4</h2>
                                                         </div>
-                                                    </div> <label class="fieldlabels">First Name: *</label> <input type="text" name="fname" placeholder="First Name" /> <label class="fieldlabels">Last Name: *</label> <input type="text" name="lname" placeholder="Last Name" /> <label class="fieldlabels">Contact No.: *</label> <input type="text" name="phno" placeholder="Contact No." /> <label class="fieldlabels">Alternate Contact No.: *</label> <input type="text" name="phno_2" placeholder="Alternate Contact No." />
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="number" className="form-control" id="floatingProductLength" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingProductLength">Length (cm)</label>
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="number" className="form-control" id="floatingProductWidth" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingProductWidth">Width (cm)</label>
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="number" className="form-control" id="floatingProductHeight" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingProductHeight">Height (cm)</label>
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="number" className="form-control" id="floatingProductWeight" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingProductWeight">Weight (kg)</label>
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="number" className="form-control" id="floatingProductValue" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingProductValue">$ Value (AUD)</label>
+                                                    </div>
+                                                    <div class="form-floating">
+                                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '100px' }}></textarea>
+                                                        <label for="floatingTextarea2">Item Description</label>
+                                                    </div>
                                                 </div>
                                                 <input onClick={() => {
                                                     setActiveSection(activeSection + 1)
@@ -110,12 +139,28 @@ const ServiceDetails = () => {
                                                 <div class="form-card">
                                                     <div class="row">
                                                         <div class="col-7">
-                                                            <h2 class="fs-title">Image Upload:</h2>
+                                                            <h2 class="fs-title">Receiver Information</h2>
                                                         </div>
                                                         <div class="col-5">
-                                                            <h2 class="steps">Step 3 - 4</h2>
+                                                            <h2 class="steps">Step {activeSection} - 4</h2>
                                                         </div>
-                                                    </div> <label class="fieldlabels">Upload Your Photo:</label> <input type="file" name="pic" accept="image/*" /> <label class="fieldlabels">Upload Signature Photo:</label> <input type="file" name="pic" accept="image/*" />
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="text" className="form-control" id="floatingName" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingName">Name</label>
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingEmail">Email address</label>
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="number" className="form-control" id="floatingPhone" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingPhone">Phone</label>
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="number" className="form-control" id="floatingSenderAddress" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingSenderAddress">Receiver Address</label>
+                                                    </div>
                                                 </div>
                                                 <input onClick={() => {
                                                     setActiveSection(activeSection + 1)
@@ -130,7 +175,7 @@ const ServiceDetails = () => {
                                                             <h2 class="fs-title">Finish:</h2>
                                                         </div>
                                                         <div class="col-5">
-                                                            <h2 class="steps">Step 4 - 4</h2>
+                                                            <h2 class="steps">Step {activeSection} - 4</h2>
                                                         </div>
                                                     </div> <br /><br />
                                                     <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br />

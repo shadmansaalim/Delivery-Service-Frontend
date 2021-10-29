@@ -1,3 +1,11 @@
+.details-banner{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 600px;
+    position: relative;
+}
+
 
 #heading {
     text-transform: uppercase;
@@ -142,9 +150,9 @@
     font-weight: 400
 }
 
-#progressbar #account:before {
+#progressbar #order:before {
     font-family: FontAwesome;
-    content: "\f13e"
+    content: "\f49e"
 }
 
 #progressbar #personal:before {
