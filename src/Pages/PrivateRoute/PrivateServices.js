@@ -6,7 +6,7 @@ const PrivateServices = ({ children, ...rest }) => {
     const { user, isLoading } = useAuth();
     if (isLoading) {
         return (<section className="text-center vh-100 d-flex justify-content-center align-items-center">
-            <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         </section>);
     }
     return (

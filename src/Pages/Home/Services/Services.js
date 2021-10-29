@@ -24,7 +24,7 @@ const Services = () => {
                     :
                     //Custom Spinner
                     <section className="text-center" style={{ marginTop: '100px', marginBottom: '100px' }} >
-                        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                        <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                     </section>
             }
         </section>
