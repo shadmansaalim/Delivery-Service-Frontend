@@ -31,7 +31,15 @@ const Header = () => {
                     <Nav className="me-auto">
                         <NavLink className="text-white nav-link " to="/home">Home</NavLink>
                         <HashLink className="nav-link text-white me-lg-2" to="/#services">Services</HashLink>
-                        <NavLink className="text-white nav-link " to="/about">About</NavLink>
+                        {
+                            user?.email
+                            &&
+                            <>
+                                <NavLink className="text-white nav-link " to="/my-orders">My Orders</NavLink>
+                                <NavLink className="text-white nav-link " to="/manage-orders">Manage Orders</NavLink>
+                                <NavLink className="text-white nav-link " to="/add-service">Add Service</NavLink>
+                            </>
+                        }
                         <NavLink className="text-white nav-link " to="/contact">Contact</NavLink>
                     </Nav>
                     {
