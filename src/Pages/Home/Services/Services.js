@@ -18,7 +18,7 @@ const Services = () => {
             {
                 services.length
                     ?
-                    <section style={{ marginTop: '60px' }}>
+                    <section className="mx-lg-5" style={{ marginTop: '60px' }}>
                         <h2>We provide services that you can rely on</h2>
                         <Row xs={1} md={2} lg={3} className="g-4 mt-3 mb-5">
                             {
