@@ -3,11 +3,14 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useServices from '../../hooks/useServices';
+import './ServiceDetails.css'
 
 const ServiceDetails = () => {
     const { id } = useParams();
     const [services, setServices] = useServices();
     const [service, setService] = useState({});
+    const [activeSection, setActiveSection] = useState(1);
+    const [progress, setProgress] = useState(25);
 
     useEffect(() => {
         const url = `http://localhost:5000/services/${id}`;
@@ -28,11 +31,125 @@ const ServiceDetails = () => {
             {
                 service.name
                     ?
-                    <div className="text-center">
+                    <section className="text-center">
                         <img src={service.banner} alt="" style={{ width: '100%', height: '500px' }} />
                         <h3 className="my-3">{service.name}</h3>
                         <p className="col-6 mx-auto">{service.description}</p>
-                    </div>
+
+
+
+
+                        <div class="container-fluid">
+                            <div class="row justify-content-center">
+                                <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+                                    <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                                        <h2 id="heading">Provide Details For Delivery</h2>
+                                        <p>Fill all form field to go to next step</p>
+                                        <form id="msform">
+
+                                            <ul id="progressbar">
+                                                <li class={activeSection >= 1 && "active"} id="account"><strong>Account</strong></li>
+                                                <li class={activeSection >= 2 && "active"} id="personal"><strong>Personal</strong></li>
+                                                <li class={activeSection >= 3 && "active"} id="payment"><strong>Image</strong></li>
+                                                <li class={activeSection >= 4 && "active"} id="confirm"><strong>Finish</strong></li>
+                                            </ul>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" style={{ width: `${progress}%` }}></div>
+                                            </div>
+                                            <br />
+                                            <fieldset class={activeSection !== 1 ? "d-none" : "d-block"} >
+                                                <div class="form-card">
+                                                    <div class="row">
+                                                        <div class="col-7">
+                                                            <h2 class="fs-title">Sender Information</h2>
+                                                        </div>
+                                                        <div class="col-5">
+                                                            <h2 class="steps">Step {activeSection} - 4</h2>
+                                                        </div>
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="text" className="form-control" id="floatingName" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingName">Name</label>
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingEmail">Email address</label>
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="number" className="form-control" id="floatingPhone" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingPhone">Phone</label>
+                                                    </div>
+                                                    <div className="form-floating mb-3">
+                                                        <input type="number" className="form-control" id="floatingSenderAddress" placeholder="name@example.com" />
+                                                        <label htmlFor="floatingSenderAddress">Sender Address</label>
+                                                    </div>
+                                                </div>
+                                                <input onClick={() => {
+                                                    setActiveSection(activeSection + 1)
+                                                    setProgress(50);
+                                                }} type="button" name="next" class="next action-button" value="Next" />
+                                            </fieldset>
+                                            <fieldset class={activeSection !== 2 ? "d-none" : "d-block"}>
+                                                <div class="form-card">
+                                                    <div class="row">
+                                                        <div class="col-7">
+                                                            <h2 class="fs-title">Personal Information:</h2>
+                                                        </div>
+                                                        <div class="col-5">
+                                                            <h2 class="steps">Step 2 - 4</h2>
+                                                        </div>
+                                                    </div> <label class="fieldlabels">First Name: *</label> <input type="text" name="fname" placeholder="First Name" /> <label class="fieldlabels">Last Name: *</label> <input type="text" name="lname" placeholder="Last Name" /> <label class="fieldlabels">Contact No.: *</label> <input type="text" name="phno" placeholder="Contact No." /> <label class="fieldlabels">Alternate Contact No.: *</label> <input type="text" name="phno_2" placeholder="Alternate Contact No." />
+                                                </div>
+                                                <input onClick={() => {
+                                                    setActiveSection(activeSection + 1)
+                                                    setProgress(75);
+                                                }} type="button" name="next" class="next action-button" value="Next" />
+                                                <input onClick={() => setActiveSection(activeSection - 1)} type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                            </fieldset>
+                                            <fieldset class={activeSection !== 3 ? "d-none" : "d-block"}>
+                                                <div class="form-card">
+                                                    <div class="row">
+                                                        <div class="col-7">
+                                                            <h2 class="fs-title">Image Upload:</h2>
+                                                        </div>
+                                                        <div class="col-5">
+                                                            <h2 class="steps">Step 3 - 4</h2>
+                                                        </div>
+                                                    </div> <label class="fieldlabels">Upload Your Photo:</label> <input type="file" name="pic" accept="image/*" /> <label class="fieldlabels">Upload Signature Photo:</label> <input type="file" name="pic" accept="image/*" />
+                                                </div>
+                                                <input onClick={() => {
+                                                    setActiveSection(activeSection + 1)
+                                                    setProgress(100)
+                                                }} type="button" name="next" class="next action-button" value="Submit" />
+                                                <input onClick={() => setActiveSection(activeSection - 1)} type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                            </fieldset>
+                                            <fieldset class={activeSection !== 4 ? "d-none" : "d-block"}>
+                                                <div class="form-card">
+                                                    <div class="row">
+                                                        <div class="col-7">
+                                                            <h2 class="fs-title">Finish:</h2>
+                                                        </div>
+                                                        <div class="col-5">
+                                                            <h2 class="steps">Step 4 - 4</h2>
+                                                        </div>
+                                                    </div> <br /><br />
+                                                    <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br />
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" class="fit-image" alt="" /> </div>
+                                                    </div> <br /><br />
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-7 text-center">
+                                                            <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                     :
                     <section className="text-center vh-100 d-flex justify-content-center align-items-center">
                         <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
