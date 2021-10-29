@@ -4,8 +4,7 @@ import { Navbar, Container, Nav, Button, Offcanvas } from 'react-bootstrap';
 import { NavLink, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import profile from '../../../images/profileImage.934e5b10.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { HashLink } from 'react-router-hash-link';
 
 const Header = () => {
     const history = useHistory();
@@ -31,7 +30,7 @@ const Header = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <NavLink className="text-white nav-link " to="/home">Home</NavLink>
-                        <NavLink className="text-white nav-link " to="/services">Services</NavLink>
+                        <HashLink className="nav-link text-white me-lg-2" to="/#services">Services</HashLink>
                         <NavLink className="text-white nav-link " to="/about">About</NavLink>
                         <NavLink className="text-white nav-link " to="/contact">Contact</NavLink>
                     </Nav>
