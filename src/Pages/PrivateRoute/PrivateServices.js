@@ -1,15 +1,13 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router';
 import useAuth from '../../hooks/useAuth';
-import { Spinner } from 'react-bootstrap';
 
 const PrivateServices = ({ children, ...rest }) => {
     const { user, isLoading } = useAuth();
     if (isLoading) {
-        return (<div className="vh-100 d-flex flex-column align-items-center mx-auto justify-content-center">
-            <h3>Loading...</h3>
-            <Spinner animation="grow" />
-        </div>);
+        return (<section className="text-center vh-100 d-flex justify-content-center align-items-center">
+            <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </section>);
     }
     return (
         <Route

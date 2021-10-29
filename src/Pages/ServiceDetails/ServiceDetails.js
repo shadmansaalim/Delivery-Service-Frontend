@@ -34,7 +34,9 @@ const ServiceDetails = () => {
                         <p className="col-6 mx-auto">{service.description}</p>
                     </div>
                     :
-                    null
+                    <section className="text-center vh-100 d-flex justify-content-center align-items-center">
+                        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                    </section>
             }
         </section>
     );
