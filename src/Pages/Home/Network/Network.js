@@ -3,7 +3,7 @@ import React from 'react';
 const Network = () => {
     return (
         <section className="mb-5" style={{ marginTop: '100px' }}>
-            <h3 className="text-center mt-4">Australia's largest delivery network</h3>
+            <h3 className="text-center mt-4" style={{ color: '#0057A7' }}>Australia's largest delivery network</h3>
             <div className="row d-flex justify-content-center align-items-center mx-auto text-center mt-3">
                 <div className="col-md-3 mx-auto">
                     <img className="img-fluid" src="https://startrack.com.au/content/dam/startrack_corp/images/illu-delivery-points-across-network.svg" alt="" />
