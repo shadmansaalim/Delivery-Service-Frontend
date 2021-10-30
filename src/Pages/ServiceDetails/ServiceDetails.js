@@ -22,6 +22,7 @@ const ServiceDetails = () => {
         console.log(data);
         data.serviceTaken = id;
         data.status = "Pending";
+        data.step = 1;
         fetch('http://localhost:5000/orders', {
             method: 'POST',
             headers: {
