@@ -75,7 +75,7 @@ const Footer = () => {
 
 
 
-                <section className="mb-4">
+                <section className="mb-4 col-lg-6 mx-auto">
                     <p>
                         A Full Stack Order Delivery Application built using ReactJs, React Bootstrap, NodeJs, ExpressJs and for storing data MongoDB. This is a simple application where users can send any item to their relatives and friends from anywhere.
                     </p>

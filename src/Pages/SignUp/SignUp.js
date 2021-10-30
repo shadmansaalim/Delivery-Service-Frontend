@@ -1,8 +1,48 @@
 import React from 'react';
-import googleIcon from '../../images/googleIcon.png';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import swal from 'sweetalert';
+
 
 const SignUp = () => {
+    const { handleFirstNameChange,
+        handleLastNameChange,
+        handleSignUpEmailChange,
+        signUpPassword,
+        signUpRepeatPassword,
+        handleSignUpPasswordChange,
+        handleSignUpRepeatPasswordChange,
+        handleSignUp,
+        verifyEmail,
+        setUserDetails, setIsLoading, setUser } = useAuth();
+
+    const signUpSubmission = (e) => {
+        e.preventDefault();
+        if (signUpPassword === signUpRepeatPassword) {
+            setIsLoading(true)
+            handleSignUp()
+                .then(result => {
+                    setUser(result.user);
+                    verifyEmail();
+                    setUserDetails()
+                })
+                .catch(error => {
+                    if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
+                        swal("Invalid Password!", "Password should be at least 6 characters", "error");
+                    }
+                    setUser({});
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                });
+        }
+        else {
+            swal("Invalid Password!", "Please check your password and type correctly", "error");
+        }
+
+    }
+
+
     return (
         <section className="h-100 gradient-form pb-5" style={{ backgroundColor: '#eee' }}>
             <div className="container py-5 h-100">
@@ -24,33 +64,36 @@ const SignUp = () => {
                                             <p className="mt-3 mb-4 pb-1">We don't deliver boxes we deliver happiness</p>
                                         </div>
 
-                                        <form>
+                                        <form onSubmit={signUpSubmission}>
                                             <p>Create an account to enjoy our services</p>
 
                                             <div className="form-floating mb-3">
-                                                <input type="email" className="form-control" id="floatingSignUpFirstName" placeholder="name@example.com" />
+                                                <input onBlur={handleFirstNameChange} type="text" className="form-control" id="floatingSignUpFirstName" placeholder="name@example.com"
+                                                    required />
                                                 <label htmlFor="floatingSignUpFirstName">First Name</label>
                                             </div>
                                             <div className="form-floating mb-3">
-                                                <input type="email" className="form-control" id="floatingSignUpLastName" placeholder="name@example.com" />
+                                                <input onBlur={handleLastNameChange} type="text" className="form-control" id="floatingSignUpLastName" placeholder="name@example.com"
+                                                    required />
                                                 <label htmlFor="floatingSignUpLastName">Last Name</label>
                                             </div>
                                             <div className="form-floating mb-3">
-                                                <input type="email" className="form-control" id="floatingSignUpEmail" placeholder="name@example.com" />
+                                                <input onBlur={handleSignUpEmailChange} type="email" className="form-control" id="floatingSignUpEmail" placeholder="name@example.com"
+                                                    required />
                                                 <label htmlFor="floatingSignUpEmail">Email address</label>
                                             </div>
 
                                             <div className="form-floating mb-3">
-                                                <input type="password" className="form-control" id="floatingSignUpPassword" placeholder="Password" />
+                                                <input onBlur={handleSignUpPasswordChange} type="password" className="form-control" id="floatingSignUpPassword" placeholder="Password" required />
                                                 <label htmlFor="floatingSignUpPassword">Password</label>
                                             </div>
                                             <div className="form-floating mb-2">
-                                                <input type="password" className="form-control" id="floatingSignUpRepeatPassword" placeholder="Password" />
+                                                <input onBlur={handleSignUpRepeatPasswordChange} type="password" className="form-control" id="floatingSignUpRepeatPassword" placeholder="Password" />
                                                 <label htmlFor="floatingSignUpRepeatPassword">Repeat Password</label>
                                             </div>
 
                                             <div className="text-center mt-4">
-                                                <button className="btn app-blue-btn text-white btn-block mb-3" type="button">Sign Up</button>
+                                                <button className="btn app-blue-btn text-white btn-block mb-3" type="submit">Sign Up</button>
                                             </div>
 
 
