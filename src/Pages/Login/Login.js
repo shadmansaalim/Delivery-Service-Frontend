@@ -3,9 +3,12 @@ import './Login.css'
 import googleIcon from '../../images/googleIcon.png';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import swal from 'sweetalert';
+
 const Login = () => {
 
-    const { handleGoogleSignUp, handleFacebookSignUp, handleTwitterSignUp, setIsLoading } = useAuth();
+    const { handleLogin, handleLoginEmailChange,
+        handleLoginPasswordChange, handleGoogleSignUp, handleFacebookSignUp, handleTwitterSignUp, setIsLoading } = useAuth();
     const history = useHistory();
     const location = useLocation();
     const redirectURL = location.state?.from || '/home';
@@ -50,6 +53,28 @@ const Login = () => {
             });
     }
 
+
+    const loginSubmission = (e) => {
+        e.preventDefault();
+        handleLogin()
+            .then(result => {
+                console.log(result);
+                history.push(redirectURL);
+                e.target.reset();
+            })
+            .catch(error => {
+
+                if (error.message === "Firebase: Error (auth/wrong-password).") {
+                    swal("Invalid Password!", "Please check your email & password and then try again", "error");
+                }
+                else if (error.message === "Firebase: Error (auth/user-not-found).") {
+                    swal("User Not Found!", "Please check your email & password and then try again", "warning");
+                }
+
+            })
+
+    }
+
     return (
 
         <section className="h-100 gradient-form pb-5" style={{ backgroundColor: '#eee' }}>
@@ -66,16 +91,17 @@ const Login = () => {
                                             <p className="mt-3 mb-4 pb-1">We don't deliver boxes we deliver happiness</p>
                                         </div>
 
-                                        <form>
+                                        <form onSubmit={loginSubmission}>
                                             <p>Please login to your account</p>
 
                                             <div className="form-floating mb-3">
-                                                <input type="email" className="form-control" id="floatingLoginEmail" placeholder="name@example.com" />
+                                                <input onBlur={handleLoginEmailChange} type="email" className="form-control" id="floatingLoginEmail" placeholder="name@example.com"
+                                                    required />
                                                 <label htmlFor="floatingLoginEmail">Email address</label>
                                             </div>
 
                                             <div className="form-floating mb-2">
-                                                <input type="password" className="form-control" id="floatingLoginPassword" placeholder="Password" />
+                                                <input onBlur={handleLoginPasswordChange} type="password" className="form-control" id="floatingLoginPassword" placeholder="Password" required />
                                                 <label htmlFor="floatingLoginPassword">Password</label>
                                             </div>
 
@@ -84,7 +110,7 @@ const Login = () => {
                                             </div>
 
                                             <div className="text-center">
-                                                <button className="btn app-blue-btn text-white btn-block mb-3" type="button">Log in</button>
+                                                <button className="btn app-blue-btn text-white btn-block mb-3" type="submit">Log in</button>
                                             </div>
 
                                             <div className="divider d-flex align-items-center my-3">

@@ -25,6 +25,7 @@ const SignUp = () => {
                     setUser(result.user);
                     verifyEmail();
                     setUserDetails()
+                    e.target.reset();
                 })
                 .catch(error => {
                     if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {

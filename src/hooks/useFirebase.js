@@ -1,6 +1,6 @@
 import initializeAuthentication from "../Firebase/firebase.init"
 
-import { getAuth, GoogleAuthProvider, FacebookAuthProvider, TwitterAuthProvider, signInWithPopup, onAuthStateChanged, signOut, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider, TwitterAuthProvider, signInWithPopup, onAuthStateChanged, signOut, createUserWithEmailAndPassword, sendEmailVerification, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useEffect } from "react";
 import swal from 'sweetalert';
@@ -16,6 +16,8 @@ const useFirebase = () => {
     const [signUpEmail, setSignUpEmail] = useState('');
     const [signUpPassword, setSignUpPassword] = useState('');
     const [signUpRepeatPassword, setSignUpRepeatPassword] = useState('');
+    const [loginEmail, setLoginEmail] = useState('');
+    const [loginPassword, setLoginPassword] = useState('');
 
 
     const googleProvider = new GoogleAuthProvider();
@@ -91,12 +93,23 @@ const useFirebase = () => {
         return signInWithPopup(auth, twitterProvider);
     }
 
+    const handleLogin = () => {
+        return signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+    }
+
     const logOutUser = () => {
         signOut(auth)
             .then(() => {
-                setUser(null);
+                setUser({});
             })
             .finally(() => setIsLoading(false));
+    }
+
+    const handleLoginEmailChange = e => {
+        setLoginEmail(e.target.value);
+    }
+    const handleLoginPasswordChange = e => {
+        setLoginPassword(e.target.value);
     }
 
     return {
@@ -117,7 +130,10 @@ const useFirebase = () => {
         handleSignUpRepeatPasswordChange,
         handleSignUp,
         verifyEmail,
-        setUserDetails
+        setUserDetails,
+        handleLoginEmailChange,
+        handleLoginPasswordChange,
+        handleLogin
     }
 }
 
