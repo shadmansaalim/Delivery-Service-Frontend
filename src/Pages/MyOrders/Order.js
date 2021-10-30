@@ -63,7 +63,7 @@ const Order = (props) => {
             <div className="col-lg-6">
                 <p>Order ID : {_id}</p>
                 <p>Item : {itemDescription}</p>
-                <p>Delivery Status : {status}</p>
+                <p>Delivery Status : <span class={step >=4 ? "bg-success p-2 text-white" : "bg-dark p-2 text-white"}>{status}</span></p>
                 <p>Receiver : {receiverName}</p>
                 <p>Phone : {receiverPhone}</p>
                 <p>Address : {receiverAddress}</p>
