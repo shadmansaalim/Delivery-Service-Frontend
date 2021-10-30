@@ -1,25 +1,40 @@
 import React from 'react';
+import swal from 'sweetalert';
+
 const Order = (props) => {
     const { _id, itemDescription, status, step } = props.order;
     const [myOrders, setMyOrders] = props.ordersState;
 
     const handleDeleteUser = id => {
-        const proceed = window.confirm('Are you sure you want to delete?');
-        if (proceed) {
-            const url = `http://localhost:5000/orders/${id}`;
-            fetch(url, {
-                method: 'DELETE'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        const remainingUsers = myOrders.filter(order => order._id !== id);
-                        setMyOrders(remainingUsers);
-                        alert('We have successfully deleted');
-                        
-                    }
+        swal({
+            title: "Are you sure?",
+            text: `Your order of ${itemDescription} will be cancelled!`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                const url = `http://localhost:5000/orders/${id}`;
+                fetch(url, {
+                    method: 'DELETE'
                 })
-        }
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            const remainingUsers = myOrders.filter(order => order._id !== id);
+                            setMyOrders(remainingUsers);
+                    
+                            
+                        }
+                    })
+                swal("Order Cancelled Successfully", {
+                    icon: "success",
+                });
+              
+            }
+          });
+        
     }
 
 
