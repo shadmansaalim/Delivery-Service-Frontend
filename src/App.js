@@ -15,7 +15,8 @@ import AuthProvider from './context/AuthProvider';
 import PrivateForm from './Pages/PrivateRoute/PrivateForm';
 import PrivateServices from './Pages/PrivateRoute/PrivateServices';
 import MyOrders from './Pages/MyOrders/MyOrders';
-
+import ManageOrders from './Pages/ManageOrders/ManageOrders';
+import AddService from './Pages/AddService/AddService';
 function App() {
   return (
     <div className="App">
@@ -34,6 +35,12 @@ function App() {
             </PrivateServices>
             <PrivateServices exact path="/my-orders">
               <MyOrders></MyOrders>
+            </PrivateServices>
+            <PrivateServices exact path="/manage-orders">
+              <ManageOrders></ManageOrders>
+            </PrivateServices>
+            <PrivateServices exact path="/add-service">
+              <AddService></AddService>
             </PrivateServices>
             <PrivateForm exact path="/login">
               <Login></Login>

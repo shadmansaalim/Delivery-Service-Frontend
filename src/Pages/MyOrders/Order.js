@@ -2,7 +2,7 @@ import React from 'react';
 import swal from 'sweetalert';
 
 const Order = (props) => {
-    const { _id, itemDescription, status, step } = props.order;
+    const { _id, itemDescription, status, step, receiverName,receiverPhone,receiverAddress } = props.order;
     const [myOrders, setMyOrders] = props.ordersState;
 
     const handleDeleteUser = id => {
@@ -44,6 +44,9 @@ const Order = (props) => {
                 <p>Order ID : {_id}</p>
                 <p>Item : {itemDescription}</p>
                 <p>Delivery Status : {status}</p>
+                <p>Receiver : {receiverName}</p>
+                <p>Phone : {receiverPhone}</p>
+                <p>Address : {receiverAddress}</p>
                 <button onClick={() => handleDeleteUser(_id)} className={step >= 4  ? "d-none" : "btn btn-outline-danger"}>Cancel Order</button>
             </div>
              <div class="progressbar-track col-lg-6 ms-auto">

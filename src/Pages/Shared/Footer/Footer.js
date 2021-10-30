@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Footer.css';
 const Footer = () => {
     return (
 
@@ -90,77 +90,77 @@ const Footer = () => {
                     <div className="row">
 
                         <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-                            <h5 className="text-uppercase">Links</h5>
+                            <h5 >Couriers & Freight</h5>
 
                             <ul className="list-unstyled mb-0">
                                 <li>
-                                    <a href="#!" className="text-white">Link 1</a>
+                                    <a href="#!" className="text-white text-decoration-none">Parcel & Courier Services</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 2</a>
+                                    <a href="#!" className="text-white text-decoration-none">Domestic Freight</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 3</a>
+                                    <a href="#!" className="text-white text-decoration-none">Import Services</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 4</a>
+                                    <a href="#!" className="text-white text-decoration-none">Track & Trace</a>
                                 </li>
                             </ul>
                         </div>
 
                         <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-                            <h5 className="text-uppercase">Links</h5>
+                            <h5>eCommerce</h5>
 
                             <ul className="list-unstyled mb-0">
                                 <li>
-                                    <a href="#!" className="text-white">Link 1</a>
+                                    <a href="#!" className="text-white text-decoration-none">Online Self Service</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 2</a>
+                                    <a href="#!" className="text-white text-decoration-none">Regular Senders</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 3</a>
+                                    <a href="#!" className="text-white text-decoration-none">Import Services</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 4</a>
+                                    <a href="#!" className="text-white text-decoration-none">Latest Services</a>
                                 </li>
                             </ul>
                         </div>
 
                         <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-                            <h5 className="text-uppercase">Links</h5>
+                            <h5>Logistics Solutions</h5>
 
                             <ul className="list-unstyled mb-0">
                                 <li>
-                                    <a href="#!" className="text-white">Link 1</a>
+                                    <a href="#!" className="text-white text-decoration-none">Industry Solutions</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 2</a>
+                                    <a href="#!" className="text-white text-decoration-none">Corporate Solutions</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 3</a>
+                                    <a href="#!" className="text-white text-decoration-none">Project Management</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 4</a>
+                                    <a href="#!" className="text-white text-decoration-none">Mailbox Rental Services</a>
                                 </li>
                             </ul>
                         </div>
 
                         <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-                            <h5 className="text-uppercase">Links</h5>
+                            <h5>Baggage & Removals</h5>
 
                             <ul className="list-unstyled mb-0">
                                 <li>
-                                    <a href="#!" className="text-white">Link 1</a>
+                                    <a href="#!" className="text-white text-decoration-none">Fragile & Sensitive Goods</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 2</a>
+                                    <a href="#!" className="text-white text-decoration-none">Personal Goods</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 3</a>
+                                    <a href="#!" className="text-white text-decoration-none">Baggage Removals</a>
                                 </li>
                                 <li>
-                                    <a href="#!" className="text-white">Link 4</a>
+                                    <a href="#!" className="text-white text-decoration-none">Excess Baggage</a>
                                 </li>
                             </ul>
                         </div>
