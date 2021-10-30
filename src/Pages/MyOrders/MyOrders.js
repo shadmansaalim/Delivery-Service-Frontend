@@ -48,6 +48,7 @@ const MyOrders = () => {
                             myOrders.map(order => <Order
                                 key={order._id}
                                 order={order}
+                                ordersState={[myOrders,setMyOrders]}
                             ></Order>)
                         }
 
