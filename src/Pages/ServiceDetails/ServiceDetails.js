@@ -20,9 +20,8 @@ const ServiceDetails = () => {
 
     const onSubmit = data => {
         console.log(data);
-        data.serviceTaken = id;
+        data.serviceTaken = service.name;
         data.status = "Pending";
-        data.step = 1;
         fetch('http://localhost:5000/orders', {
             method: 'POST',
             headers: {

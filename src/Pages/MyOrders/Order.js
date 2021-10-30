@@ -1,10 +1,30 @@
 import React from 'react';
 import swal from 'sweetalert';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Order = (props) => {
-    const { _id, itemDescription, status, step, receiverName,receiverPhone,receiverAddress } = props.order;
+    const { _id, itemDescription, status, receiverName,receiverPhone,receiverAddress } = props.order;
     const [myOrders, setMyOrders] = props.ordersState;
+    const [step, setStep] = useState(1);
 
+    useEffect(() => {
+        if(status === 'Pending'){
+            setStep(1);
+        }
+        else if(status === 'Accepted'){
+            setStep(2);
+        }
+        else if(status === 'Collected'){
+            setStep(3);
+        }
+        else if(status === 'Shipped'){
+            setStep(4);
+        }
+        else if(status === 'Delivered'){
+            setStep(5);
+        }
+    },[])
     const handleDeleteUser = id => {
         swal({
             title: "Are you sure?",

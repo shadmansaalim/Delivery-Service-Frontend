@@ -19,9 +19,8 @@ const MyOrders = () => {
             })
                 .then(res => res.json())
                 .then(result => {
-                    console.log(result);
                     setMyOrders(result);
-                })
+;                })
 
         }
     }, [])
