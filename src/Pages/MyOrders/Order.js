@@ -25,7 +25,7 @@ const Order = (props) => {
             setStep(5);
         }
     },[])
-    const handleDeleteUser = id => {
+    const handleDeleteOrder = id => {
         swal({
             title: "Are you sure?",
             text: `Your order of ${itemDescription} will be cancelled!`,
@@ -42,8 +42,8 @@ const Order = (props) => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount > 0) {
-                            const remainingUsers = myOrders.filter(order => order._id !== id);
-                            setMyOrders(remainingUsers);
+                            const remainingOrders = myOrders.filter(order => order._id !== id);
+                            setMyOrders(remainingOrders);
                     
                             
                         }
@@ -67,7 +67,7 @@ const Order = (props) => {
                 <p>Receiver : {receiverName}</p>
                 <p>Phone : {receiverPhone}</p>
                 <p>Address : {receiverAddress}</p>
-                <button onClick={() => handleDeleteUser(_id)} className={step >= 4  ? "d-none" : "btn btn-outline-danger"}>Cancel Order</button>
+                <button onClick={() => handleDeleteOrder(_id)} className={step >= 4  ? "d-none" : "btn btn-outline-danger"}>Cancel Order</button>
             </div>
              <div class="progressbar-track col-lg-6 ms-auto">
                         <ul class="progressbar">

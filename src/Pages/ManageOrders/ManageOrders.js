@@ -1,7 +1,8 @@
 import React from 'react';
 import './ManageOrders.css';
 import { useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect,useRef } from 'react';
+import swal from 'sweetalert';
 
 const ManageOrders = () => {
     const [allOrders, setAllOrders] = useState([]);
@@ -11,6 +12,65 @@ const ManageOrders = () => {
         .then(res => res.json())
         .then(data => setAllOrders(data));
     },[])
+
+    const handleDeleteOrder = (id,name) => {
+        swal({
+            title: "Are you sure?",
+            text: `Order of ${name} will be cancelled!`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                const url = `http://localhost:5000/orders/${id}`;
+                fetch(url, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            const remainingOrders = allOrders.filter(order => order._id !== id);
+                            setAllOrders(remainingOrders);
+                    
+                            
+                        }
+                    })
+                swal("Order Cancelled Successfully", {
+                    icon: "success",
+                });
+              
+            }
+          });
+        
+    }
+
+    const updateOrderStatus = (e,id) => {
+        console.log(e.target.value, id)
+        swal({
+            title: "Are you sure?",
+            text: `Order Status will be updated to ${e.target.value}`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willUpdate) => {
+            if (willUpdate) {
+                const url = `http://localhost:5000/orders/${id}`;
+                fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        "content-type" : "application/json"
+                    },
+                    body: JSON.stringify(id)
+                })
+                swal("Order Updated Successfully", {
+                    icon: "success",
+                });
+              
+            }
+          });
+    }
     return (
 
             <div class="container mx-auto table-responsive text-nowrap" style={{marginBottom: '120px', marginTop: '120px'}}>
@@ -38,20 +98,20 @@ const ManageOrders = () => {
                       <td>{order.senderAddress}</td>
                       <td>{order.receiverName}</td>
                       <td>{order.receiverAddress}</td>
-                      <td>Person to Person Delivery</td>
-                      <td class="dropdown">
-                         <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                         {order.status}
-                          </button>
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                             <li><a class="dropdown-item" href="!#">Accepted</a></li>
-                             <li><a class="dropdown-item" href="!#">Collected</a></li>
-                             <li><a class="dropdown-item" href="!#">Shipped</a></li>
-                             <li><a class="dropdown-item" href="!#">Delivered</a></li>
-                          </ul>
+                      <td>{order.serviceTaken}</td>
+                      <td>
+                         <select class="form-select mb-3 bg-warning" aria-label=".example" onChange={(e) => {
+                             updateOrderStatus(e,order._id);
+                                    }}>
+                            <option selected>{order.status}</option>
+                            <option value="Accepted">Accepted</option>
+                            <option value="Collected">Collected</option>
+                            <option value="Shipped">Shipped</option>
+                            <option value="Delivered">Delivered</option>
+                        </select>
                       </td>
                       <td>
-                      <button class="btn btn-sm btn-outline-danger">Cancel Order</button>
+                      <button onClick={() => handleDeleteOrder(order._id, order.senderName)} class="btn btn-sm btn-outline-danger">Cancel Order</button>
                       </td>
                     </tr>
                   )

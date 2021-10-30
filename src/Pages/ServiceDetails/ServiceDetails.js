@@ -36,6 +36,9 @@ const ServiceDetails = () => {
                     reset();
                 }
             })
+            .catch(error => {
+                alert('Something wen wrong')
+            })
     };
 
 
@@ -142,7 +145,7 @@ const ServiceDetails = () => {
                                                                     <div className="mb-3">
                                                                         <input
                                                                             placeholder="Weight(kg)"
-                                                                            type="number" className="form-control" defaultValue=""  {...register("itemWeight", { required: true })} />
+                                                                            type="text" className="form-control" defaultValue=""  {...register("itemWeight", { required: true })} />
                                                                     </div>
                                                                     <div className="mb-3">
                                                                         <input
