@@ -14,6 +14,7 @@ import SignUp from './Pages/SignUp/SignUp';
 import AuthProvider from './context/AuthProvider';
 import PrivateForm from './Pages/PrivateRoute/PrivateForm';
 import PrivateServices from './Pages/PrivateRoute/PrivateServices';
+import MyOrders from './Pages/MyOrders/MyOrders';
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
             </Route>
             <PrivateServices exact path="/service/:id">
               <ServiceDetails></ServiceDetails>
+            </PrivateServices>
+            <PrivateServices exact path="/my-orders">
+              <MyOrders></MyOrders>
             </PrivateServices>
             <PrivateForm exact path="/login">
               <Login></Login>

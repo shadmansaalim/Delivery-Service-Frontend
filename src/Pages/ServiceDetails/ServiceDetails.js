@@ -5,7 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import './ServiceDetails.css'
 import { useForm } from 'react-hook-form';
-import placedImg from '../../images/profileImage.934e5b10.png';
+import placedImg from '../../images/placed.svg';
 
 const ServiceDetails = () => {
     const { id } = useParams();
@@ -21,7 +21,7 @@ const ServiceDetails = () => {
     const onSubmit = data => {
         console.log(data);
         data.serviceTaken = id;
-        data.status = "pending";
+        data.status = "Pending";
         fetch('http://localhost:5000/orders', {
             method: 'POST',
             headers: {

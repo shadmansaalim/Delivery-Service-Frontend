@@ -40,6 +40,7 @@ const Header = () => {
                                 <NavLink className="text-white nav-link " to="/add-service">Add Service</NavLink>
                             </>
                         }
+                        <NavLink className="text-white nav-link " to="/about">About</NavLink>
                         <NavLink className="text-white nav-link " to="/contact">Contact</NavLink>
                     </Nav>
                     {
