@@ -17,7 +17,7 @@ const MyOrders = () => {
 
     useEffect(() => {
         if (user.email) {
-            fetch('http://localhost:5000/myOrders', {
+            fetch('https://eerie-blood-54641.herokuapp.com/myOrders', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

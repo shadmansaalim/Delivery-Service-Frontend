@@ -10,7 +10,7 @@ const AddService = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-        fetch('http://localhost:5000/addService', {
+        fetch('https://eerie-blood-54641.herokuapp.com/addService', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"

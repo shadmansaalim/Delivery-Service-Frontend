@@ -35,7 +35,7 @@ const Order = (props) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    const url = `http://localhost:5000/orders/${id}`;
+                    const url = `https://eerie-blood-54641.herokuapp.com/orders/${id}`;
                     fetch(url, {
                         method: 'DELETE'
                     })

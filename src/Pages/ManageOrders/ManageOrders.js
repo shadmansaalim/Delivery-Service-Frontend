@@ -14,7 +14,7 @@ const ManageOrders = () => {
     const [allOrders, setAllOrders] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/allOrders')
+        fetch('https://eerie-blood-54641.herokuapp.com/allOrders')
             .then(res => res.json())
             .then(data => setAllOrders(data));
     }, [])
@@ -29,7 +29,7 @@ const ManageOrders = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    const url = `http://localhost:5000/orders/${id}`;
+                    const url = `https://eerie-blood-54641.herokuapp.com/${id}`;
                     fetch(url, {
                         method: 'DELETE'
                     })
@@ -63,7 +63,7 @@ const ManageOrders = () => {
         })
             .then((willUpdate) => {
                 if (willUpdate) {
-                    const url = `http://localhost:5000/ordersUpdate/${id}`;
+                    const url = `https://eerie-blood-54641.herokuapp.com/${id}`;
                     fetch(url, {
                         method: "PUT",
                         headers: {

@@ -22,7 +22,7 @@ const ServiceDetails = () => {
         console.log(data);
         data.serviceTaken = service.name;
         data.status = "Pending";
-        fetch('http://localhost:5000/orders', {
+        fetch('https://eerie-blood-54641.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -43,7 +43,7 @@ const ServiceDetails = () => {
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/services/${id}`;
+        const url = `https://eerie-blood-54641.herokuapp.com/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => {
