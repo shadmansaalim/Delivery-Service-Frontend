@@ -3,8 +3,14 @@ import './ManageOrders.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import swal from 'sweetalert';
+import { Row, Col, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { useHistory } from 'react-router';
+import img from '../../images/empty.svg';
 
 const ManageOrders = () => {
+    const history = useHistory();
     const [allOrders, setAllOrders] = useState([]);
 
     useEffect(() => {
@@ -126,9 +132,25 @@ const ManageOrders = () => {
                         </tbody>
                     </table>
                     :
-                    <section className="text-center vh-100 d-flex justify-content-center align-items-center">
-                        <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-                    </section>
+                    <div>
+                        {
+                            allOrders.length === 0
+                                ?
+                                <Row>
+                                    <Col lg="6" className="mx-auto shadow-lg my-5 p-5 rounded-3 text-center">
+                                        <img className="img-fluid mb-3 col-6" src={img} alt="" />
+                                        <h3>No Orders From Any User</h3>
+                                        <p>Users still didn't order anything from Pack & Send</p>
+                                        {/* Navigating the user back to homepage */}
+                                        <Button onClick={() => history.push('/home')} variant="outline-warning me-3">Home <FontAwesomeIcon icon={faHome} /></Button>
+                                    </Col>
+                                </Row>
+                                :
+                                <section className="text-center vh-100 d-flex justify-content-center align-items-center">
+                                    <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                                </section>
+                        }
+                    </div>
             }
         </div>
 
