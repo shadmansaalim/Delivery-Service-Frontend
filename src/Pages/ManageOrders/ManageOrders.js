@@ -29,7 +29,7 @@ const ManageOrders = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    const url = `https://eerie-blood-54641.herokuapp.com/${id}`;
+                    const url = `https://eerie-blood-54641.herokuapp.com/orders/${id}`;
                     fetch(url, {
                         method: 'DELETE'
                     })
@@ -63,7 +63,7 @@ const ManageOrders = () => {
         })
             .then((willUpdate) => {
                 if (willUpdate) {
-                    const url = `https://eerie-blood-54641.herokuapp.com/${id}`;
+                    const url = `https://eerie-blood-54641.herokuapp.com/ordersUpdate/${id}`;
                     fetch(url, {
                         method: "PUT",
                         headers: {

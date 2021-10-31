@@ -43,7 +43,7 @@ const ServiceDetails = () => {
 
 
     useEffect(() => {
-        const url = `https://eerie-blood-54641.herokuapp.com/${id}`;
+        const url = `https://eerie-blood-54641.herokuapp.com/services/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => {
