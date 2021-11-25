@@ -37,7 +37,7 @@ const ServiceDetails = () => {
                 }
             })
             .catch(error => {
-                alert('Something wen wrong')
+                alert('Something went wrong')
             })
     };
 
